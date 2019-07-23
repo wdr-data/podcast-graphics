@@ -8,6 +8,7 @@
         "classnames": "^2.2.6",
         "lodash-es": "^4.17.15",
         "react": "^16.8.6",
+        "react-cropper": "^1.2.0",
         "react-dom": "^16.8.6"
     },
     "scripts": {
@@ -37,6 +38,7 @@
         "@types/lodash-es": "^4.17.3",
         "@types/node": "12.6.8",
         "@types/react": "16.8.23",
+        "@types/react-cropper": "^0.10.6",
         "@types/react-dom": "16.8.4",
         "node-sass": "^4.12.0",
         "prettier": "^1.18.2",
