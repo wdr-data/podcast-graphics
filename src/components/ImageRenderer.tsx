@@ -46,9 +46,10 @@ interface ImageRendererProps {
   aspectRatio: number;
   background: string | undefined; // dataurl
   podcast: string;
+  text: string | undefined;
 }
 
-const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, background, podcast }) => {
+const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, background, podcast, text }) => {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   const [renderedDataUrl, setRenderedDataUrl] = useState<string>();
@@ -78,11 +79,40 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
       drawImage(ctx, TITLE_IMAGES[podcast][mode]);
       drawImage(ctx, LOGO_IMAGES["wdr2_podcast"][mode]);
 
+      if (text) {
+        text = text.toUpperCase();
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.fillStyle = "#fff";
+
+        let size;
+        switch (mode) {
+          case "square":
+            size = 75;
+            break;
+          case "wide":
+            size = 100;
+        }
+        ctx.font = `bold ${size}px sans-serif`;
+        let textSize = ctx.measureText(text);
+        while (textSize.width > 0.85 * ctx.canvas.height) {
+          size -= 5;
+          ctx.font = `bold ${size}px sans-serif`;
+          textSize = ctx.measureText(text);
+        }
+        ctx.fillText(
+          text,
+          ctx.canvas.width / 2,
+          ctx.canvas.height * config.podcasts[podcast].offsetTitle,
+          ctx.canvas.width
+        );
+      }
+
       setRenderedDataUrl(canvas.current.toDataURL("image/jpeg"));
     };
 
     return () => {};
-  }, [background, podcast, mode]);
+  }, [background, podcast, mode, text]);
 
   return (
     <>
