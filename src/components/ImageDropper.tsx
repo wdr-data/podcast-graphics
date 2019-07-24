@@ -25,7 +25,7 @@ const ImageDropper: React.FC<ImageDropperProps> = ({ setSource, children }) => {
       };
       reader.readAsDataURL(files[0]);
     }
-  }, []);
+  }, [setSource]);
 
   const { getRootProps, getInputProps, open, isDragActive } = useDropzone({
     onDrop,
