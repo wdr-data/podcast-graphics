@@ -32,7 +32,7 @@ const ImageDropper: React.FC<ImageDropperProps> = ({ setSource, children }) => {
     noClick: false,
     noKeyboard: true
   });
-  console.log(open);
+
   return (
     <div {...dropZoneBugWorkaround(getRootProps({}))}>
       <input {...getInputProps()} />
