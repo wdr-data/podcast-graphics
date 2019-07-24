@@ -1,0 +1,12 @@
+@import "../util/variables";
+@import "util/Common.module";
+
+.appbar {
+    margin: {
+        bottom: 8 * $unit;
+    }
+
+    .toolbar {
+        justify-content: space-between;
+    }
+}

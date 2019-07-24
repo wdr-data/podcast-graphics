@@ -3,6 +3,7 @@ import ReactCropper from "react-cropper";
 import Button from "@material-ui/core/es/Button";
 
 import "cropperjs/dist/cropper.css";
+import styles from "./ImageCropper.module.scss";
 
 interface ImageCropperProps {
   source: string | undefined;
@@ -24,20 +25,18 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ source, aspectRatio, result
   }, [cropper, resultChanged]);
 
   return (
-    <div>
-      <div style={{ width: "100%" }}>
-        <ReactCropper
-          style={{ height: 800, width: "100%" }}
-          aspectRatio={aspectRatio}
-          viewMode={2}
-          guides={true}
-          src={source}
-          ref={crp => (cropper.current = crp)}
-        />
-        <Button variant="contained" color="primary" onClick={crop}>
-          Crop Image
-        </Button>
-      </div>
+    <div className={styles.wrapper}>
+      <ReactCropper
+        className={styles.cropper}
+        aspectRatio={aspectRatio}
+        viewMode={2}
+        guides={true}
+        src={source}
+        ref={crp => (cropper.current = crp)}
+      />
+      <Button variant="contained" color="primary" onClick={crop}>
+        Crop Image
+      </Button>
     </div>
   );
 };

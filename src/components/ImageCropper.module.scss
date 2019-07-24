@@ -1,0 +1,13 @@
+@import "../util/variables";
+
+.wrapper {
+    max-width: 100%;
+}
+
+.cropper {
+    height: 150 * $unit;
+    width: 100%;
+    margin: {
+        bottom: 4 * $unit;
+    }
+}

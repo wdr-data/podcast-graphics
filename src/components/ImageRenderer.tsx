@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useLayoutEffect } from "react";
 import Button from "@material-ui/core/es/Button";
 
 import config from "../config.json";
@@ -41,6 +41,19 @@ const drawImage = (ctx: CanvasRenderingContext2D, img: CanvasImageSource) => {
   );
 };
 
+interface OnLoadAble {
+  onload: any;
+  complete: boolean;
+}
+function waitForLoad<T extends OnLoadAble>(obj: T): Promise<T> {
+  return new Promise(resolve => {
+    if (obj.complete) {
+      return resolve(obj)
+    }
+    obj.onload = () => resolve(obj);
+  });
+}
+
 interface ImageRendererProps {
   mode: Mode;
   aspectRatio: number;
@@ -55,28 +68,34 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
   const [renderedDataUrl, setRenderedDataUrl] = useState<string>();
 
   // Draw canvas
-  useEffect(() => {
-    console.log(`Drawing canvas`);
-
-    if (!canvas.current || !background) {
-      return;
-    }
-
-    const img = new Image();
-    img.src = background;
-
-    img.onload = () => {
-      if (!canvas.current || !background) {
+  useLayoutEffect(() => {
+    const draw = async () => {
+      if (!canvas.current) {
         return;
       }
+
+      const img = new Image();
+      img.src =
+        background ||
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=";
+
 
       const ctx = canvas.current.getContext("2d");
       if (!ctx) {
         return;
       }
 
+      await waitForLoad(img);
+      console.log("loaded img");
+
       drawImage(ctx, img);
+
+      await waitForLoad(TITLE_IMAGES[podcast][mode]);
+      console.log("loaded title");
       drawImage(ctx, TITLE_IMAGES[podcast][mode]);
+
+      await waitForLoad(LOGO_IMAGES["wdr2_podcast"][mode]);
+      console.log("loaded logo");
       drawImage(ctx, LOGO_IMAGES["wdr2_podcast"][mode]);
 
       if (text) {
@@ -106,31 +125,28 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
           ctx.canvas.height * config.podcasts[podcast].offsetTitle,
           ctx.canvas.width
         );
+
+        setRenderedDataUrl(canvas.current.toDataURL("image/jpeg"));
       }
 
-      setRenderedDataUrl(canvas.current.toDataURL("image/jpeg"));
     };
 
-    return () => {};
+    draw();
   }, [background, podcast, mode, text]);
 
   return (
     <>
-      {background && (
-        <>
-          <canvas
-            className={styles.canvas}
-            ref={canvas}
-            height={TARGET_HEIGHT[mode]}
-            width={TARGET_HEIGHT[mode] * aspectRatio}
-          />
-          <a download="som.jpg" href={renderedDataUrl}>
-            <Button variant="contained" color="primary">
-              Download
-            </Button>
-          </a>
-        </>
-      )}
+      <canvas
+        className={styles.canvas}
+        ref={canvas}
+        height={TARGET_HEIGHT[mode]}
+        width={TARGET_HEIGHT[mode] * aspectRatio}
+      />
+      <a download="som.jpg" href={renderedDataUrl}>
+        <Button variant="contained" color="primary">
+          Download
+        </Button>
+      </a>
     </>
   );
 };
