@@ -4,30 +4,13 @@ import ReactCropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 
 interface ImageCropperProps {
+  source: string | undefined;
   aspectRatio: number;
   resultChanged: any;
 }
 
-const ImageCropper: React.FC<ImageCropperProps> = ({ aspectRatio, resultChanged }) => {
+const ImageCropper: React.FC<ImageCropperProps> = ({ source, aspectRatio, resultChanged }) => {
   const cropper = useRef<ReactCropper | null>(null);
-  const [source, setSource] = useState<string | undefined>();
-
-  const fileUploaded = useCallback((e: any) => {
-    {
-      e.preventDefault();
-      let files;
-      if (e.dataTransfer) {
-        files = e.dataTransfer.files;
-      } else if (e.target) {
-        files = e.target.files;
-      }
-      const reader = new FileReader();
-      reader.onload = () => {
-        setSource(reader.result as string);
-      };
-      reader.readAsDataURL(files[0]);
-    }
-  }, []);
 
   const crop = useCallback(() => {
     if (!cropper.current) {
@@ -42,7 +25,6 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ aspectRatio, resultChanged 
   return (
     <div>
       <div style={{ width: "100%" }}>
-        <input type="file" onChange={fileUploaded} />
         <ReactCropper
           style={{ height: 400, width: "100%" }}
           aspectRatio={aspectRatio}
