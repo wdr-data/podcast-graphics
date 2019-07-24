@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from "react";
 import ReactCropper from "react-cropper";
+import Button from "@material-ui/core/es/Button";
 
 import "cropperjs/dist/cropper.css";
 
@@ -26,16 +27,16 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ source, aspectRatio, result
     <div>
       <div style={{ width: "100%" }}>
         <ReactCropper
-          style={{ height: 400, width: "100%" }}
+          style={{ height: 800, width: "100%" }}
           aspectRatio={aspectRatio}
           viewMode={2}
           guides={true}
           src={source}
           ref={crp => (cropper.current = crp)}
         />
-        <button onClick={crop} style={{ float: "right" }}>
+        <Button variant="contained" color="primary" onClick={crop}>
           Crop Image
-        </button>
+        </Button>
       </div>
     </div>
   );
