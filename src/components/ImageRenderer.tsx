@@ -6,7 +6,11 @@ import config from "../config.json";
 import styles from "./ImageRenderer.module.scss";
 import { Mode } from "./App.jsx";
 
-const TARGET_HEIGHT = 2160;
+const TARGET_HEIGHT = {
+  square: 1400,
+  wide: 2160
+}
+
 
 const TITLE_IMAGES = config.podcasts.reduce((acc, cur) => {
   const square = new Image();
@@ -78,14 +82,14 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
       setRenderedDataUrl(canvas.current.toDataURL("image/jpeg"));
     };
 
-    return () => {};
+    return () => { };
   }, [background, podcast, mode]);
 
   return (
     <>
       {background && (
         <>
-          <canvas className={styles.canvas} ref={canvas} height={TARGET_HEIGHT} width={TARGET_HEIGHT * aspectRatio} />
+          <canvas className={styles.canvas} ref={canvas} height={TARGET_HEIGHT[mode]} width={TARGET_HEIGHT[mode] * aspectRatio} />
           <a download="som.jpg" href={renderedDataUrl}>
             <Button variant="contained" color="primary">
               Download
