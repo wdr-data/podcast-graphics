@@ -28,8 +28,8 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ source, aspectRatio, result
         <ReactCropper
           style={{ height: 400, width: "100%" }}
           aspectRatio={aspectRatio}
-          preview=".img-preview"
-          guides={false}
+          viewMode={2}
+          guides={true}
           src={source}
           ref={crp => (cropper.current = crp)}
         />
