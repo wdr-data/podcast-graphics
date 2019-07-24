@@ -11,12 +11,12 @@ const TARGET_HEIGHT = {
   wide: 2160
 };
 
-const TITLE_IMAGES = config.podcasts.reduce((acc, cur) => {
+const TITLE_IMAGES = Object.keys(config.podcasts).reduce((acc, id) => {
   const square = new Image();
-  square.src = require(`../img/title/square/${cur.id}.png`);
+  square.src = require(`../img/title/square/${id}.png`);
   const wide = new Image();
-  wide.src = require(`../img/title/wide/${cur.id}.png`);
-  return { [cur.id]: { square, wide }, ...acc };
+  wide.src = require(`../img/title/wide/${id}.png`);
+  return { [id]: { square, wide }, ...acc };
 }, {});
 
 const LOGO_IMAGES = ["wdr2_podcast"].reduce((acc, cur) => {

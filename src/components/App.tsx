@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import Select from "@material-ui/core/es/Select";
 import MenuItem from "@material-ui/core/es/MenuItem";
 import Button from "@material-ui/core/es/Button";
+import _ from "lodash-es";
 
 import ImageDropper, { UploadConsumer } from "./ImageDropper";
 import ImageCropper from "./ImageCropper";
@@ -28,8 +29,8 @@ const App: React.FC = () => {
   return (
     <ImageDropper setSource={setSource}>
       <Select value={podcast} onChange={podcastChanged}>
-        {config.podcasts.map(pod => (
-          <MenuItem value={pod.id} key={pod.id}>
+        {_.toPairs(config.podcasts).map(([id, pod]) => (
+          <MenuItem value={id} key={id}>
             {pod.name}
           </MenuItem>
         ))}

@@ -1,3 +1,6 @@
 {
-  "podcasts": [{ "id": "thadeusz", "name": "Thadeusz" }, { "id": "bundesliga_to_go", "name": "Bundesliga To Go" }]
+  "podcasts": {
+    "thadeusz": { "name": "Thadeusz", "offset": 0.5944 },
+    "bundesliga_to_go": { "name": "Bundesliga To Go", "offset": 0.7 }
+  }
 }
