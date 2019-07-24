@@ -29,7 +29,9 @@ const App: React.FC = () => {
     <ImageDropper setSource={setSource}>
       <Select value={podcast} onChange={podcastChanged}>
         {config.podcasts.map(pod => (
-          <MenuItem value={pod.id}>{pod.name}</MenuItem>
+          <MenuItem value={pod.id} key={pod.id}>
+            {pod.name}
+          </MenuItem>
         ))}
       </Select>
       <Select
