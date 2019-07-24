@@ -27,7 +27,7 @@ const ImageDropper: React.FC<ImageDropperProps> = ({ setSource, children }) => {
     }
   }, [setSource]);
 
-  const { getRootProps, getInputProps, open, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps, open } = useDropzone({
     onDrop,
     noClick: false,
     noKeyboard: true
