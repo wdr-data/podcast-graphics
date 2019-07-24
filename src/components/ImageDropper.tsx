@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
-const UploadContext = React.createContext({open: () => {} })
+const UploadContext = React.createContext({ open: () => {} });
 const UploadProvider = UploadContext.Provider;
 export const UploadConsumer = UploadContext.Consumer;
 
@@ -36,9 +36,7 @@ const ImageDropper: React.FC<ImageDropperProps> = ({ setSource, children }) => {
   return (
     <div {...dropZoneBugWorkaround(getRootProps({}))}>
       <input {...getInputProps()} />
-      <UploadProvider value={{open}}>
-       {children}
-      </UploadProvider>
+      <UploadProvider value={{ open }}>{children}</UploadProvider>
     </div>
   );
 };

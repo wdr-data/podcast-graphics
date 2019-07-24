@@ -48,12 +48,7 @@ interface ImageRendererProps {
   podcast: string;
 }
 
-const ImageRenderer: React.FC<ImageRendererProps> = ({
-  aspectRatio,
-  mode,
-  background,
-  podcast
-}) => {
+const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, background, podcast }) => {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   const [renderedDataUrl, setRenderedDataUrl] = useState<string>();
