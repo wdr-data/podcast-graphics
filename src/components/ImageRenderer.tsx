@@ -51,7 +51,7 @@ interface OnLoadAble {
 function waitForLoad<T extends OnLoadAble>(obj: T): Promise<T> {
   return new Promise(resolve => {
     if (obj.complete) {
-      return resolve(obj)
+      return resolve(obj);
     }
     obj.onload = () => resolve(obj);
   });
@@ -124,7 +124,6 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
 
         setRenderedDataUrl(canvas.current.toDataURL("image/jpeg"));
       }
-
     };
 
     draw();
