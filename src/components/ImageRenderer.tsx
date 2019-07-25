@@ -58,15 +58,21 @@ function waitForLoad<T extends OnLoadAble>(obj: T): Promise<T> {
   });
 }
 
+interface ImageFilter {
+  name: "brightness" | "contrast" | "saturate";
+  value: number;
+}
+
 interface ImageRendererProps {
   mode: Mode;
   aspectRatio: number;
   background: string | undefined; // dataurl
   podcast: string;
   text: string | undefined;
+  filters?: ImageFilter[];
 }
 
-const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, background, podcast, text }) => {
+const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, background, podcast, text, filters }) => {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   const [renderedDataUrl, setRenderedDataUrl] = useState<string>();
@@ -86,8 +92,14 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
         return;
       }
 
+      ctx.save();
+
+      ctx.filter = (filters || []).map(filter => `${filter.name}(${filter.value})`).join(" ");
+
       await waitForLoad(img);
       drawImage(ctx, img);
+
+      ctx.restore();
 
       await waitForLoad(TITLE_IMAGES[podcast][mode]);
       drawImage(ctx, TITLE_IMAGES[podcast][mode]);
@@ -132,7 +144,7 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
     };
 
     draw();
-  }, [background, podcast, mode, text]);
+  }, [background, podcast, mode, text, filters]);
 
   return (
     <>

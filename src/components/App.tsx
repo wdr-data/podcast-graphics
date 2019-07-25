@@ -11,6 +11,8 @@ import Container from "@material-ui/core/es/Container";
 import Paper from "@material-ui/core/es/Paper";
 import Typography from "@material-ui/core/es/Typography";
 import Grid from "@material-ui/core/es/Grid";
+import Slider from "@material-ui/core/es/Slider";
+
 import _ from "lodash-es";
 
 import ImageDropper, { UploadConsumer } from "./ImageDropper";
@@ -24,11 +26,21 @@ import styles from "./App.module.scss";
 
 export type Mode = "square" | "wide";
 
+const formatPercent = val => `${val}%`;
+
 const App: React.FC = () => {
   const [aspectRatio, aspectRatioChanged] = useFormField("square");
   const [podcast, podcastChanged] = useFormField("thadeusz");
   const [podcastText, setPodcastText] = useState<string | undefined>("zu Gast (Vorname Nachname)");
   const podcastTextField = useRef<HTMLInputElement>(null);
+
+  // Filter
+  const [brightness, setBrightness] = useState<number>(100);
+  const brightnessChanged = useCallback((ev, value) => setBrightness(value), []);
+  const [contrast, setContrast] = useState<number>(100);
+  const contrastChanged = useCallback((ev, value) => setContrast(value), []);
+  const [saturation, setSaturation] = useState<number>(100);
+  const saturationChanged = useCallback((ev, value) => setSaturation(value), []);
 
   const [source, setSource] = useState<string | undefined>();
   const [background, setBackground] = useState<string | undefined>();
@@ -114,7 +126,51 @@ const App: React.FC = () => {
                 </Paper>
               </Grid>
             </Grid>
-
+            <Paper className={styles.paper}>
+              <Typography variant="h5">Filter</Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <div>
+                    <Typography component="span">Helligkeit</Typography>
+                    <Slider
+                      min={0}
+                      max={200}
+                      marks={[{ value: 100 }]}
+                      valueLabelDisplay={true}
+                      valueLabelFormat={formatPercent}
+                      defaultValue={brightness}
+                      onChangeCommitted={brightnessChanged}
+                    />
+                  </div>
+                  <div>
+                    <Typography component="span">Kontrast</Typography>
+                    <Slider
+                      min={0}
+                      max={200}
+                      marks={[{ value: 100 }]}
+                      valueLabelDisplay={true}
+                      valueLabelFormat={formatPercent}
+                      defaultValue={contrast}
+                      onChangeCommitted={contrastChanged}
+                    />
+                  </div>
+                </Grid>
+                <Grid item xs={6}>
+                  <div>
+                    <Typography component="span">Sättigung</Typography>
+                    <Slider
+                      min={0}
+                      max={200}
+                      marks={[{ value: 100 }]}
+                      valueLabelDisplay={true}
+                      valueLabelFormat={formatPercent}
+                      defaultValue={saturation}
+                      onChangeCommitted={saturationChanged}
+                    />
+                  </div>
+                </Grid>
+              </Grid>
+            </Paper>
             <Paper className={styles.paper}>
               <Typography variant="h5">Bild zuschneiden</Typography>
               {source ? (
@@ -141,6 +197,11 @@ const App: React.FC = () => {
                 background={background}
                 podcast={podcast}
                 text={config.podcasts[podcast].hasTitle && podcastText}
+                filters={[
+                  { name: "brightness", value: brightness / 100 },
+                  { name: "contrast", value: contrast / 100 },
+                  { name: "saturate", value: saturation / 100 }
+                ]}
               />
             </Paper>
           </Grid>
