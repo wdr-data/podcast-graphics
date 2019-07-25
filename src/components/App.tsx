@@ -1,15 +1,14 @@
 import React, { useState, useCallback, useRef } from "react";
 import AppBar from "@material-ui/core/es/AppBar";
 import Toolbar from "@material-ui/core/es/Toolbar";
+import FormControl from "@material-ui/core/es/FormControl";
+import InputLabel from "@material-ui/core/es/InputLabel";
 import Select from "@material-ui/core/es/Select";
 import MenuItem from "@material-ui/core/es/MenuItem";
 import Button from "@material-ui/core/es/Button";
 import TextField from "@material-ui/core/es/TextField";
 import Container from "@material-ui/core/es/Container";
 import Paper from "@material-ui/core/es/Paper";
-import ExpansionPanel from "@material-ui/core/es/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/es/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/es/ExpansionPanelDetails";
 import Typography from "@material-ui/core/es/Typography";
 import Grid from "@material-ui/core/es/Grid";
 import _ from "lodash-es";
@@ -51,74 +50,91 @@ const App: React.FC = () => {
             WDR Podracer
           </Typography>
 
-          <div className={styles.upload}>
-            <UploadConsumer>
-              {props => (
-                <Button variant="contained" color="secondary" onClick={props.open}>
-                  Upload
-                </Button>
-              )}
-            </UploadConsumer>
-            <Typography variant="body1" component="span">
-              &nbsp;&nbsp;oder Drag &amp; Drop
-            </Typography>
-          </div>
+          <UploadConsumer>
+            {props => (
+              <Button variant="contained" color="secondary" onClick={props.open}>
+                Bild auswählen
+              </Button>
+            )}
+          </UploadConsumer>
         </Toolbar>
       </AppBar>
       <Container maxWidth="xl">
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <ExpansionPanel>
-              <ExpansionPanelSummary>
-                <Typography variant="h6">Bild zuschneiden</Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <ImageCropper
-                  source={source}
-                  aspectRatio={aspectRatio === "square" ? 1 : 16 / 9}
-                  resultChanged={cropResultChanged}
-                />
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={styles.paper}>
-              <Select value={podcast} onChange={podcastChanged}>
-                {_.toPairs(config.podcasts).map(([id, pod]) => (
-                  <MenuItem value={id} key={id}>
-                    {pod.name}
-                  </MenuItem>
-                ))}
-              </Select>
-              <br />
-              <Select
-                value={aspectRatio}
-                onChange={ev => {
-                  setBackground(undefined);
-                  return aspectRatioChanged(ev);
-                }}
-              >
-                <MenuItem value="square">Quadratisch</MenuItem>
-                <MenuItem value="wide">16 : 9</MenuItem>
-              </Select>
-              <br />
-              {config.podcasts[podcast].hasTitle && (
-                <>
-                  <TextField
-                    inputRef={podcastTextField}
-                    label="Name der Folge"
-                    defaultValue={podcastText}
-                    margin="normal"
-                  />
-                  <Button variant="contained" color="primary" onClick={applyPodcastText}>
-                    Anwenden
-                  </Button>
+          <Grid item xs={7}>
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <Paper className={styles.paper}>
+                  <Typography variant="h5">Allgemeine Einstellungen</Typography>
                   <br />
+                  <FormControl fullWidth>
+                    <InputLabel>Podcast</InputLabel>
+                    <Select value={podcast} onChange={podcastChanged}>
+                      {_.toPairs(config.podcasts).map(([id, pod]) => (
+                        <MenuItem value={id} key={id}>
+                          {pod.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                  <br />
+                  <br />
+                  <FormControl fullWidth>
+                    <InputLabel>Bildformat</InputLabel>
+                    <Select
+                      value={aspectRatio}
+                      onChange={ev => {
+                        setBackground(undefined);
+                        return aspectRatioChanged(ev);
+                      }}
+                    >
+                      <MenuItem value="square">Quadratisch</MenuItem>
+                      <MenuItem value="wide">16 : 9</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Paper className={styles.paper}>
+                  <Typography variant="h5">Podcast-Einstellungen</Typography>
+                  {config.podcasts[podcast].hasTitle && (
+                    <>
+                      <TextField
+                        fullWidth
+                        inputRef={podcastTextField}
+                        label="Name der Folge"
+                        defaultValue={podcastText}
+                        margin="normal"
+                      />
+                      <Button variant="contained" color="primary" onClick={applyPodcastText}>
+                        Anwenden
+                      </Button>
+                      <br />
+                    </>
+                  )}
+                </Paper>
+              </Grid>
+            </Grid>
+
+            <Paper className={styles.paper}>
+              <Typography variant="h5">Bild zuschneiden</Typography>
+              {source ? (
+                <>
+                  <br />
+                  <ImageCropper
+                    source={source}
+                    aspectRatio={aspectRatio === "square" ? 1 : 16 / 9}
+                    resultChanged={cropResultChanged}
+                  />
                 </>
+              ) : (
+                <div className={styles.dragndropcalltoaction}>
+                  <p>Bild hier hin ziehen um zu beginnen</p>
+                </div>
               )}
             </Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={5}>
             <Paper className={styles.paper}>
               <ImageRenderer
                 mode={aspectRatio as Mode}

@@ -141,7 +141,7 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
         height={TARGET_HEIGHT[mode]}
         width={TARGET_HEIGHT[mode] * aspectRatio}
       />
-      <a download="som.jpg" href={renderedDataUrl}>
+      <a className={styles.download} download="som.jpg" href={renderedDataUrl}>
         <Button variant="contained" color="primary">
           Download
         </Button>

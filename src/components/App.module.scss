@@ -10,3 +10,20 @@
         justify-content: space-between;
     }
 }
+
+.dragndropcalltoaction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100 * $unit;
+    width: 100%;
+
+    p {
+        height: 2rem;
+        font: {
+            size: 2rem;
+        }
+        color: gray;
+    }
+}

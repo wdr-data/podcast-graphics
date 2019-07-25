@@ -12,4 +12,7 @@
 
 .paper {
     padding: 6 * $unit;
+    margin: {
+        bottom: 6 * $unit;
+    }
 }
