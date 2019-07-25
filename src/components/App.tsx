@@ -48,9 +48,9 @@ const App: React.FC = () => {
   const cropResultChanged = useCallback(newCrop => {
     setBackground(newCrop);
   }, []);
-  const applyPodcastText = useCallback(() => {
+  const applyPodcastText = useCallback(ev => {
+    ev.preventDefault();
     podcastTextField.current && setPodcastText(podcastTextField.current!.value);
-    return false;
   }, []);
 
   return (
@@ -109,7 +109,7 @@ const App: React.FC = () => {
                 <Paper className={styles.paper}>
                   <Typography variant="h5">Podcast-Einstellungen</Typography>
                   {config.podcasts[podcast].hasTitle && (
-                    <form action="#" onSubmit={applyPodcastText}>
+                    <form onSubmit={applyPodcastText}>
                       <TextField
                         fullWidth
                         inputRef={podcastTextField}
