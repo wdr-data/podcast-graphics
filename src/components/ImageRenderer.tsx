@@ -95,28 +95,32 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
       drawImage(ctx, LOGO_IMAGES["wdr2_podcast"][mode]);
 
       if (text) {
-        text = text.toUpperCase();
+        const textUpper = text.toUpperCase();
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
         ctx.fillStyle = "#fff";
 
-        let size;
+        let size: number;
         switch (mode) {
-          case "square":
-            size = 75;
-            break;
           case "wide":
             size = 100;
+            break;
+          case "square":
+          default:
+            size = 75;
         }
+
         ctx.font = `bold ${size}px sans-serif`;
-        let textSize = ctx.measureText(text);
+        let textSize = ctx.measureText(textUpper);
+
         while (textSize.width > 0.85 * ctx.canvas.height) {
           size -= 5;
           ctx.font = `bold ${size}px sans-serif`;
-          textSize = ctx.measureText(text);
+          textSize = ctx.measureText(textUpper);
         }
+
         ctx.fillText(
-          text,
+          textUpper,
           ctx.canvas.width / 2,
           ctx.canvas.height * config.podcasts[podcast].offsetTitle,
           ctx.canvas.width
