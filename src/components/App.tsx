@@ -136,7 +136,7 @@ const App: React.FC = () => {
                       min={0}
                       max={200}
                       marks={[{ value: 100 }]}
-                      valueLabelDisplay={true}
+                      valueLabelDisplay="auto"
                       valueLabelFormat={formatPercent}
                       defaultValue={brightness}
                       onChangeCommitted={brightnessChanged}
@@ -148,7 +148,7 @@ const App: React.FC = () => {
                       min={0}
                       max={200}
                       marks={[{ value: 100 }]}
-                      valueLabelDisplay={true}
+                      valueLabelDisplay="auto"
                       valueLabelFormat={formatPercent}
                       defaultValue={contrast}
                       onChangeCommitted={contrastChanged}
@@ -162,7 +162,7 @@ const App: React.FC = () => {
                       min={0}
                       max={200}
                       marks={[{ value: 100 }]}
-                      valueLabelDisplay={true}
+                      valueLabelDisplay="auto"
                       valueLabelFormat={formatPercent}
                       defaultValue={saturation}
                       onChangeCommitted={saturationChanged}
