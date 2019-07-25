@@ -86,16 +86,12 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
       }
 
       await waitForLoad(img);
-      console.log("loaded img");
-
       drawImage(ctx, img);
 
       await waitForLoad(TITLE_IMAGES[podcast][mode]);
-      console.log("loaded title");
       drawImage(ctx, TITLE_IMAGES[podcast][mode]);
 
       await waitForLoad(LOGO_IMAGES["wdr2_podcast"][mode]);
-      console.log("loaded logo");
       drawImage(ctx, LOGO_IMAGES["wdr2_podcast"][mode]);
 
       if (text) {
