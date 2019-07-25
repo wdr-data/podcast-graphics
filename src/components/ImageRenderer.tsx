@@ -138,9 +138,9 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
           ctx.canvas.height * config.podcasts[podcast].offsetTitle,
           ctx.canvas.width
         );
-
-        setRenderedDataUrl(canvas.current.toDataURL("image/jpeg"));
       }
+
+      setRenderedDataUrl(canvas.current.toDataURL("image/jpeg"));
     };
 
     draw();
