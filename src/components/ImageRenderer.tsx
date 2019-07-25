@@ -27,6 +27,9 @@ const LOGO_IMAGES = ["wdr2_podcast"].reduce((acc, cur) => {
   return { [cur]: { square, wide }, ...acc };
 }, {});
 
+const DEFAULT_PIXEL =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=";
+
 const drawImage = (ctx: CanvasRenderingContext2D, img: CanvasImageSource) => {
   ctx.drawImage(
     img,
@@ -75,10 +78,7 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
       }
 
       const img = new Image();
-      img.src =
-        background ||
-        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=";
-
+      img.src = background || DEFAULT_PIXEL;
 
       const ctx = canvas.current.getContext("2d", { alpha: false });
       if (!ctx) {
