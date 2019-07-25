@@ -80,7 +80,7 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
         "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=";
 
 
-      const ctx = canvas.current.getContext("2d");
+      const ctx = canvas.current.getContext("2d", { alpha: false });
       if (!ctx) {
         return;
       }
