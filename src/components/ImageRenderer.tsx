@@ -1,5 +1,6 @@
 import React, { useRef, useState, useLayoutEffect } from "react";
 import Button from "@material-ui/core/es/Button";
+import moment from "moment-timezone";
 
 import config from "../config.json";
 
@@ -141,7 +142,13 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
         height={TARGET_HEIGHT[mode]}
         width={TARGET_HEIGHT[mode] * aspectRatio}
       />
-      <a className={styles.download} download="som.jpg" href={renderedDataUrl}>
+      <a
+        className={styles.download}
+        download={`${podcast}_${moment()
+          .tz("Europe/Berlin")
+          .format("YYYY-MM-DD")}_${mode}`}
+        href={renderedDataUrl}
+      >
         <Button variant="contained" color="primary">
           Download
         </Button>
