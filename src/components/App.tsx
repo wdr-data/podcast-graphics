@@ -37,9 +37,8 @@ const App: React.FC = () => {
     setBackground(newCrop);
   }, []);
   const applyPodcastText = useCallback(() => {
-    console.log("vor");
-    podcastTextField.current && console.log(podcastTextField.current.value);
-    setPodcastText(podcastTextField.current!.value);
+    podcastTextField.current && setPodcastText(podcastTextField.current!.value);
+    return false;
   }, []);
 
   return (
@@ -98,7 +97,7 @@ const App: React.FC = () => {
                 <Paper className={styles.paper}>
                   <Typography variant="h5">Podcast-Einstellungen</Typography>
                   {config.podcasts[podcast].hasTitle && (
-                    <>
+                    <form action="#" onSubmit={applyPodcastText}>
                       <TextField
                         fullWidth
                         inputRef={podcastTextField}
@@ -110,7 +109,7 @@ const App: React.FC = () => {
                         Anwenden
                       </Button>
                       <br />
-                    </>
+                    </form>
                   )}
                 </Paper>
               </Grid>
