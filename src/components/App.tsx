@@ -129,7 +129,7 @@ const App: React.FC = () => {
                 </>
               ) : (
                 <div className={styles.dragndropcalltoaction}>
-                  <p>Bild hier hin ziehen um zu beginnen</p>
+                  <p>Bild hier hin ziehen, um zu beginnen</p>
                 </div>
               )}
             </Paper>
