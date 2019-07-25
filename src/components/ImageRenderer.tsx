@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useLayoutEffect } from "react";
+import React, { useRef, useState, useLayoutEffect } from "react";
 import Button from "@material-ui/core/es/Button";
 
 import config from "../config.json";
