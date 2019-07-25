@@ -158,7 +158,7 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
         className={styles.download}
         download={`${podcast}_${moment()
           .tz("Europe/Berlin")
-          .format("YYYY-MM-DD")}_${mode}`}
+          .format("YYYY-MM-DD")}_${mode}.jpeg`}
         href={renderedDataUrl}
       >
         <Button variant="contained" color="primary">
