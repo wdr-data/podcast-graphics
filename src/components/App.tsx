@@ -58,7 +58,7 @@ const App: React.FC = () => {
       <AppBar position="static" className={styles.appbar}>
         <Toolbar className={styles.toolbar}>
           <Typography variant="h5" component="h1">
-            WDR Podracer
+            WDR Podcast Image Generator
           </Typography>
 
           <UploadConsumer>
@@ -203,6 +203,20 @@ const App: React.FC = () => {
                   { name: "saturate", value: saturation / 100 }
                 ]}
               />
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={styles.paper}>
+              <Typography variant="h6" component="h1">
+                Prototyp: Podcast Image Generator
+              </Typography>
+              <Typography>
+                Ein Produkt der Abteilung Online-Hörfunk (HA ZA Hörfunk), entwickelt vom HackingStudio{" "}
+                <span role="img" aria-label="Rakete">
+                  🚀
+                </span>{" "}
+                — Kontakt: David Kick
+              </Typography>
             </Paper>
           </Grid>
         </Grid>
