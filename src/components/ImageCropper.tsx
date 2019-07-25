@@ -1,6 +1,5 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import ReactCropper from "react-cropper";
-import Button from "@material-ui/core/es/Button";
 
 import "cropperjs/dist/cropper.css";
 import styles from "./ImageCropper.module.scss";
@@ -18,11 +17,13 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ source, aspectRatio, result
     if (!cropper.current) {
       return;
     }
-    if (typeof cropper.current.getCroppedCanvas() === "undefined") {
+    if (typeof cropper.current.getCroppedCanvas() === "undefined" || cropper.current.getCroppedCanvas() === null) {
       return;
     }
     resultChanged(cropper.current.getCroppedCanvas().toDataURL());
   }, [cropper, resultChanged]);
+
+  useEffect(crop, [aspectRatio, crop]);
 
   return (
     <div className={styles.wrapper}>
@@ -31,12 +32,11 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ source, aspectRatio, result
         aspectRatio={aspectRatio}
         viewMode={2}
         guides={true}
+        cropend={crop}
+        ready={crop}
         src={source}
         ref={crp => (cropper.current = crp)}
       />
-      <Button variant="contained" color="primary" onClick={crop}>
-        Crop Image
-      </Button>
     </div>
   );
 };
