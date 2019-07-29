@@ -127,51 +127,6 @@ const App: React.FC = () => {
               </Grid>
             </Grid>
             <Paper className={styles.paper}>
-              <Typography variant="h5">Filter</Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <div>
-                    <Typography component="span">Helligkeit</Typography>
-                    <Slider
-                      min={0}
-                      max={200}
-                      marks={[{ value: 100 }]}
-                      valueLabelDisplay="auto"
-                      valueLabelFormat={formatPercent}
-                      defaultValue={brightness}
-                      onChangeCommitted={brightnessChanged}
-                    />
-                  </div>
-                  <div>
-                    <Typography component="span">Kontrast</Typography>
-                    <Slider
-                      min={0}
-                      max={200}
-                      marks={[{ value: 100 }]}
-                      valueLabelDisplay="auto"
-                      valueLabelFormat={formatPercent}
-                      defaultValue={contrast}
-                      onChangeCommitted={contrastChanged}
-                    />
-                  </div>
-                </Grid>
-                <Grid item xs={6}>
-                  <div>
-                    <Typography component="span">Sättigung</Typography>
-                    <Slider
-                      min={0}
-                      max={200}
-                      marks={[{ value: 100 }]}
-                      valueLabelDisplay="auto"
-                      valueLabelFormat={formatPercent}
-                      defaultValue={saturation}
-                      onChangeCommitted={saturationChanged}
-                    />
-                  </div>
-                </Grid>
-              </Grid>
-            </Paper>
-            <Paper className={styles.paper}>
               <Typography variant="h5">Bild zuschneiden</Typography>
               {source ? (
                 <>
@@ -203,6 +158,53 @@ const App: React.FC = () => {
                   { name: "saturate", value: saturation / 100 }
                 ]}
               />
+            </Paper>
+            <Paper className={styles.paper}>
+              <Typography variant="h5">Filter</Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={4}>
+                  <div>
+                    <Typography component="span">Helligkeit</Typography>
+                    <Slider
+                      min={0}
+                      max={200}
+                      marks={[{ value: 100 }]}
+                      valueLabelDisplay="auto"
+                      valueLabelFormat={formatPercent}
+                      defaultValue={brightness}
+                      onChangeCommitted={brightnessChanged}
+                    />
+                  </div>
+                </Grid>
+                <Grid item xs={4}>
+                  <div>
+                    <Typography component="span">Kontrast</Typography>
+                    <Slider
+                      min={0}
+                      max={200}
+                      marks={[{ value: 100 }]}
+                      valueLabelDisplay="auto"
+                      valueLabelFormat={formatPercent}
+                      defaultValue={contrast}
+                      onChangeCommitted={contrastChanged}
+                    />
+                  </div>
+                </Grid>
+                <Grid item xs={4}>
+                  <div>
+                    <Typography component="span">Sättigung</Typography>
+                    <Slider
+                      min={0}
+                      max={200}
+                      marks={[{ value: 100 }]}
+                      valueLabelDisplay="auto"
+                      valueLabelFormat={formatPercent}
+                      defaultValue={saturation}
+                      onChangeCommitted={saturationChanged}
+                    />
+                  </div>
+                </Grid>
+              </Grid>
             </Paper>
           </Grid>
           <Grid item xs={12}>
