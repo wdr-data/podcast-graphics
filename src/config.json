@@ -1,6 +1,7 @@
 {
   "podcasts": {
-    "thadeusz": { "name": "Thadeusz", "offsetTitle": 0.5944, "hasTitle": true},
-    "bundesliga_to_go": { "name": "Bundesliga To Go", "offsetTitle": 0.7, "hasTitle": false }
+    "einfach_fussball": { "name": "Einfach Fußball", "offsetTitle": 0, "hasTitle": false },
+    "kabarett": { "name": "Kabarett", "offsetTitle": 0, "hasTitle": false },
+    "thadeusz": { "name": "Thadeusz", "offsetTitle": 0, "hasTitle": false}
   }
 }
