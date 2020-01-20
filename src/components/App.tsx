@@ -6,7 +6,6 @@ import InputLabel from "@material-ui/core/es/InputLabel";
 import Select from "@material-ui/core/es/Select";
 import MenuItem from "@material-ui/core/es/MenuItem";
 import Button from "@material-ui/core/es/Button";
-import TextField from "@material-ui/core/es/TextField";
 import Container from "@material-ui/core/es/Container";
 import Paper from "@material-ui/core/es/Paper";
 import Typography from "@material-ui/core/es/Typography";
@@ -107,22 +106,51 @@ const App: React.FC = () => {
               </Grid>
               <Grid item xs={6}>
                 <Paper className={styles.paper}>
-                  <Typography variant="h5">Podcast-Einstellungen</Typography>
-                  {config.podcasts[podcast].hasTitle && (
-                    <form onSubmit={applyPodcastText}>
-                      <TextField
-                        fullWidth
-                        inputRef={podcastTextField}
-                        label="Name der Folge"
-                        defaultValue={podcastText}
-                        margin="normal"
-                      />
-                      <Button variant="contained" color="primary" onClick={applyPodcastText}>
-                        Anwenden
-                      </Button>
-                      <br />
-                    </form>
-                  )}
+                  <Typography variant="h5">Filter</Typography>
+                  <Grid container spacing={2}>
+                    <Grid item xs={4}>
+                      <div>
+                        <Typography component="span">Helligkeit</Typography>
+                        <Slider
+                          min={0}
+                          max={200}
+                          marks={[{ value: 100 }]}
+                          valueLabelDisplay="auto"
+                          valueLabelFormat={formatPercent}
+                          defaultValue={brightness}
+                          onChangeCommitted={brightnessChanged}
+                        />
+                      </div>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <div>
+                        <Typography component="span">Kontrast</Typography>
+                        <Slider
+                          min={0}
+                          max={200}
+                          marks={[{ value: 100 }]}
+                          valueLabelDisplay="auto"
+                          valueLabelFormat={formatPercent}
+                          defaultValue={contrast}
+                          onChangeCommitted={contrastChanged}
+                        />
+                      </div>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <div>
+                        <Typography component="span">Sättigung</Typography>
+                        <Slider
+                          min={0}
+                          max={200}
+                          marks={[{ value: 100 }]}
+                          valueLabelDisplay="auto"
+                          valueLabelFormat={formatPercent}
+                          defaultValue={saturation}
+                          onChangeCommitted={saturationChanged}
+                        />
+                      </div>
+                    </Grid>
+                  </Grid>
                 </Paper>
               </Grid>
             </Grid>
@@ -138,10 +166,10 @@ const App: React.FC = () => {
                   />
                 </>
               ) : (
-                <div className={styles.dragndropcalltoaction}>
-                  <p>Bild hier hin ziehen, um zu beginnen</p>
-                </div>
-              )}
+                  <div className={styles.dragndropcalltoaction}>
+                    <p>Bild hier hin ziehen, um zu beginnen</p>
+                  </div>
+                )}
             </Paper>
           </Grid>
           <Grid item xs={5}>
@@ -158,53 +186,6 @@ const App: React.FC = () => {
                   { name: "saturate", value: saturation / 100 }
                 ]}
               />
-            </Paper>
-            <Paper className={styles.paper}>
-              <Typography variant="h5">Filter</Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={4}>
-                  <div>
-                    <Typography component="span">Helligkeit</Typography>
-                    <Slider
-                      min={0}
-                      max={200}
-                      marks={[{ value: 100 }]}
-                      valueLabelDisplay="auto"
-                      valueLabelFormat={formatPercent}
-                      defaultValue={brightness}
-                      onChangeCommitted={brightnessChanged}
-                    />
-                  </div>
-                </Grid>
-                <Grid item xs={4}>
-                  <div>
-                    <Typography component="span">Kontrast</Typography>
-                    <Slider
-                      min={0}
-                      max={200}
-                      marks={[{ value: 100 }]}
-                      valueLabelDisplay="auto"
-                      valueLabelFormat={formatPercent}
-                      defaultValue={contrast}
-                      onChangeCommitted={contrastChanged}
-                    />
-                  </div>
-                </Grid>
-                <Grid item xs={4}>
-                  <div>
-                    <Typography component="span">Sättigung</Typography>
-                    <Slider
-                      min={0}
-                      max={200}
-                      marks={[{ value: 100 }]}
-                      valueLabelDisplay="auto"
-                      valueLabelFormat={formatPercent}
-                      defaultValue={saturation}
-                      onChangeCommitted={saturationChanged}
-                    />
-                  </div>
-                </Grid>
-              </Grid>
             </Paper>
           </Grid>
           <Grid item xs={12}>
