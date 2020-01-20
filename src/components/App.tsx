@@ -34,8 +34,6 @@ const App: React.FC = () => {
 
   const [aspectRatio, aspectRatioChanged] = useFormField("square");
   const [podcast, podcastChanged] = useFormField("thadeusz");
-  const [podcastText, setPodcastText] = useState<string | undefined>("zu Gast (Vorname Nachname)");
-  const podcastTextField = useRef<HTMLInputElement>(null);
 
   // Filter
   const [brightness, setBrightness] = useState<number>(100);
@@ -50,10 +48,6 @@ const App: React.FC = () => {
 
   const cropResultChanged = useCallback(newCrop => {
     setBackground(newCrop);
-  }, []);
-  const applyPodcastText = useCallback(ev => {
-    ev.preventDefault();
-    podcastTextField.current && setPodcastText(podcastTextField.current!.value);
   }, []);
 
   return (
@@ -183,7 +177,6 @@ const App: React.FC = () => {
                 aspectRatio={aspectRatio === "square" ? 1 : 16 / 9}
                 background={background}
                 podcast={podcast}
-                text={config.podcasts[podcast].hasTitle && podcastText}
                 filters={[
                   { name: "brightness", value: brightness / 100 },
                   { name: "contrast", value: contrast / 100 },
