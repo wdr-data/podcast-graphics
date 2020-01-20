@@ -11,6 +11,7 @@ import Paper from "@material-ui/core/es/Paper";
 import Typography from "@material-ui/core/es/Typography";
 import Grid from "@material-ui/core/es/Grid";
 import Slider from "@material-ui/core/es/Slider";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import _ from "lodash-es";
 
@@ -28,6 +29,9 @@ export type Mode = "square" | "wide";
 const formatPercent = val => `${val}%`;
 
 const App: React.FC = () => {
+  // Responsivity
+  const isMobile = useMediaQuery('only screen and (max-width: 768px)');
+
   const [aspectRatio, aspectRatioChanged] = useFormField("square");
   const [podcast, podcastChanged] = useFormField("thadeusz");
   const [podcastText, setPodcastText] = useState<string | undefined>("zu Gast (Vorname Nachname)");
@@ -71,9 +75,9 @@ const App: React.FC = () => {
       </AppBar>
       <Container maxWidth="xl">
         <Grid container spacing={3}>
-          <Grid item xs={7}>
+          <Grid item xs={isMobile ? 12 : 7}>
             <Grid container spacing={3}>
-              <Grid item xs={6}>
+              <Grid item xs={isMobile ? 12 : 6}>
                 <Paper className={styles.paper}>
                   <Typography variant="h5">Allgemeine Einstellungen</Typography>
                   <br />
@@ -104,7 +108,7 @@ const App: React.FC = () => {
                   </FormControl>
                 </Paper>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={isMobile ? 12 : 6}>
                 <Paper className={styles.paper}>
                   <Typography variant="h5">Filter</Typography>
                   <Grid container spacing={2}>
@@ -172,7 +176,7 @@ const App: React.FC = () => {
                 )}
             </Paper>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={isMobile ? 12 : 5}>
             <Paper className={styles.paper}>
               <ImageRenderer
                 mode={aspectRatio as Mode}
