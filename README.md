@@ -1,8 +1,14 @@
 # podcast-graphics
 
 ### Generate podcast graphics easily
+This project is provides an easy to use tool to create podcast episode graphics on the fly.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+### Graphic Templates
+The graphic templates (logo, title) are proprietary and not licensed under the MIT license.
+
 
 ## Available Scripts
 
