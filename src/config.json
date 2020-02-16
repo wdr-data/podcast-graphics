@@ -1,7 +1,5 @@
 {
   "podcasts": {
-    "einfach_fussball": { "name": "Einfach Fußball", "offsetTitle": 0, "hasTitle": false },
-    "kabarett": { "name": "Kabarett", "offsetTitle": 0, "hasTitle": false },
-    "thadeusz": { "name": "Thadeusz", "offsetTitle": 0, "hasTitle": false}
+    "leer": { "name": "Guten Morgen", "offsetTitle": 0, "hasTitle": false }
   }
 }

@@ -33,7 +33,7 @@ const App: React.FC = () => {
   const isMobile = useMediaQuery('only screen and (max-width: 768px)');
 
   const [aspectRatio, aspectRatioChanged] = useFormField("square");
-  const [podcast, podcastChanged] = useFormField("thadeusz");
+  const [podcast, podcastChanged] = useFormField("leer");
 
   // Filter
   const [brightness, setBrightness] = useState<number>(100);
@@ -55,7 +55,7 @@ const App: React.FC = () => {
       <AppBar position="static" className={styles.appbar}>
         <Toolbar className={styles.toolbar}>
           <Typography variant="h5" component="h1">
-            WDR Podcast Image Generator
+            Newsroom Easy Bauchbinden Generator
           </Typography>
 
           <UploadConsumer>
