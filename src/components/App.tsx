@@ -32,7 +32,7 @@ const App: React.FC = () => {
   // Responsivity
   const isMobile = useMediaQuery('only screen and (max-width: 768px)');
 
-  const [aspectRatio, aspectRatioChanged] = useFormField("square");
+  const [aspectRatio, aspectRatioChanged] = useFormField("wide");
   const [podcast, podcastChanged] = useFormField("leer");
 
   // Filter
@@ -96,7 +96,6 @@ const App: React.FC = () => {
                         return aspectRatioChanged(ev);
                       }}
                     >
-                      <MenuItem value="square">Quadratisch</MenuItem>
                       <MenuItem value="wide">16 : 9</MenuItem>
                     </Select>
                   </FormControl>

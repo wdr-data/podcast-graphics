@@ -9,7 +9,7 @@ import { Mode } from "./App.jsx";
 
 const TARGET_HEIGHT = {
   square: 1400,
-  wide: 2160
+  wide: 1080
 };
 
 const TITLE_IMAGES = Object.keys(config.podcasts).reduce((acc, id) => {
@@ -20,7 +20,7 @@ const TITLE_IMAGES = Object.keys(config.podcasts).reduce((acc, id) => {
   return { [id]: { square, wide }, ...acc };
 }, {});
 
-const LOGO_IMAGES = ["guten_morgen"].reduce((acc, cur) => {
+const LOGO_IMAGES = ["guten_morgen_mitte"].reduce((acc, cur) => {
   const square = new Image();
   square.src = require(`../img/logo/square/${cur}.png`);
   const wide = new Image();
@@ -103,8 +103,8 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
       await waitForLoad(TITLE_IMAGES[podcast][mode]);
       drawImage(ctx, TITLE_IMAGES[podcast][mode]);
 
-      await waitForLoad(LOGO_IMAGES["guten_morgen"][mode]);
-      drawImage(ctx, LOGO_IMAGES["guten_morgen"][mode]);
+      await waitForLoad(LOGO_IMAGES["guten_morgen_mitte"][mode]);
+      drawImage(ctx, LOGO_IMAGES["guten_morgen_mitte"][mode]);
 
       setRenderedDataUrl(canvas.current.toDataURL("image/jpeg"));
     };
