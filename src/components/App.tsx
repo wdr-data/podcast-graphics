@@ -33,7 +33,7 @@ const App: React.FC = () => {
   const isMobile = useMediaQuery('only screen and (max-width: 768px)');
 
   const [aspectRatio, aspectRatioChanged] = useFormField("wide");
-  const [podcast, podcastChanged] = useFormField("leer");
+  const [podcast, podcastChanged] = useFormField("guten_morgen");
 
   // Filter
   const [brightness, setBrightness] = useState<number>(100);

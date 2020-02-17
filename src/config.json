@@ -1,5 +1,5 @@
 {
   "podcasts": {
-    "leer": { "name": "Guten Morgen", "offsetTitle": 0, "hasTitle": false }
+    "guten_morgen": { "name": "Guten Morgen", "offsetTitle": 0, "hasTitle": false }
   }
 }
