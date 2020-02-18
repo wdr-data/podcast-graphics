@@ -12,6 +12,14 @@ const TARGET_HEIGHT = {
   wide: 1080
 };
 
+const TILT_IMAGES = Object.keys(config.podcasts).reduce((acc, id) => {
+  const square = new Image();
+  square.src = require(`../img/tilt/square/${id}.png`);
+  const wide = new Image();
+  wide.src = require(`../img/tilt/wide/${id}.png`);
+  return { [id]: { square, wide }, ...acc };
+}, {});
+
 const TITLE_IMAGES = Object.keys(config.podcasts).reduce((acc, id) => {
   const square = new Image();
   square.src = require(`../img/title/square/${id}.png`);
@@ -20,13 +28,15 @@ const TITLE_IMAGES = Object.keys(config.podcasts).reduce((acc, id) => {
   return { [id]: { square, wide }, ...acc };
 }, {});
 
-const LOGO_IMAGES = ["guten_morgen_mitte"].reduce((acc, cur) => {
+const LOGO_IMAGES = ["guten_morgen"].reduce((acc, cur) => {
   const square = new Image();
-  square.src = require(`../img/logo/square/${cur}.png`);
+  square.src = require(`../img/banner/square/${cur}.png`);
   const wide = new Image();
-  wide.src = require(`../img/logo/wide/${cur}.png`);
+  wide.src = require(`../img/banner/wide/${cur}.png`);
   return { [cur]: { square, wide }, ...acc };
 }, {});
+
+
 
 const DEFAULT_PIXEL =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=";
@@ -100,11 +110,17 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
 
       ctx.restore();
 
+      ctx.globalAlpha = 0.3;
+      await waitForLoad(TILT_IMAGES["guten_morgen"][mode]);
+      drawImage(ctx, TILT_IMAGES["guten_morgen"][mode]);
+
+      ctx.globalAlpha = 0.8;
+      await waitForLoad(LOGO_IMAGES["guten_morgen"][mode]);
+      drawImage(ctx, LOGO_IMAGES["guten_morgen"][mode]);
+
+      ctx.globalAlpha = 1;
       await waitForLoad(TITLE_IMAGES[podcast][mode]);
       drawImage(ctx, TITLE_IMAGES[podcast][mode]);
-
-      await waitForLoad(LOGO_IMAGES["guten_morgen_mitte"][mode]);
-      drawImage(ctx, LOGO_IMAGES["guten_morgen_mitte"][mode]);
 
       setRenderedDataUrl(canvas.current.toDataURL("image/jpeg"));
     };

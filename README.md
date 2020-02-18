@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ### Graphic Templates
-The graphic templates (logo, title) are proprietary and not licensed under the MIT license.
+The graphic templates (tint, banner, title) are proprietary and not licensed under the MIT license.
 
 
 ## Available Scripts

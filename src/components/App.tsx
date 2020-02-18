@@ -55,7 +55,7 @@ const App: React.FC = () => {
       <AppBar position="static" className={styles.appbar}>
         <Toolbar className={styles.toolbar}>
           <Typography variant="h5" component="h1">
-            Newsroom Easy Bauchbinden Generator
+            Guten Morgen Bauchbinden Generator
           </Typography>
 
           <UploadConsumer>
@@ -76,7 +76,7 @@ const App: React.FC = () => {
                   <Typography variant="h5">Allgemeine Einstellungen</Typography>
                   <br />
                   <FormControl fullWidth>
-                    <InputLabel>Podcast</InputLabel>
+                    <InputLabel>Bauchbinde</InputLabel>
                     <Select value={podcast} onChange={podcastChanged}>
                       {_.toPairs(config.podcasts).map(([id, pod]) => (
                         <MenuItem value={id} key={id}>
@@ -187,14 +187,14 @@ const App: React.FC = () => {
           <Grid item xs={12}>
             <Paper className={styles.paper}>
               <Typography variant="h6" component="h1">
-                Prototyp: Podcast Image Generator
+                Prototyp: Guten Morgen Bauchbinde Generator
               </Typography>
               <Typography>
-                Ein Produkt der Abteilung Online-Hörfunk (HA ZA Hörfunk), entwickelt vom HackingStudio{" "}
+                Ein Produkt der Design-Abteilung des WDR, entwickelt vom HackingStudio{" "}
                 <span role="img" aria-label="Rakete">
                   🚀
                 </span>{" "}
-                — Kontakt: David Kick
+                — Kontakt: Alina Bilkis
               </Typography>
             </Paper>
           </Grid>
