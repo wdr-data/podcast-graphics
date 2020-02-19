@@ -114,7 +114,7 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
       await waitForLoad(TILT_IMAGES["guten_morgen"][mode]);
       drawImage(ctx, TILT_IMAGES["guten_morgen"][mode]);
 
-      ctx.globalAlpha = 0.8;
+      ctx.globalAlpha = 0.7;
       await waitForLoad(LOGO_IMAGES["guten_morgen"][mode]);
       drawImage(ctx, LOGO_IMAGES["guten_morgen"][mode]);
 
