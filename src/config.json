@@ -1,7 +1,29 @@
 {
   "podcasts": {
-    "einfach_fussball": { "name": "Einfach Fußball", "offsetTitle": 0, "hasTitle": false },
-    "kabarett": { "name": "Kabarett", "offsetTitle": 0, "hasTitle": false },
-    "thadeusz": { "name": "Thadeusz", "offsetTitle": 0, "hasTitle": false}
+    "einfach_fussball": {
+      "name": "Einfach Fußball",
+      "offsetTitle": 0,
+      "hasTitle": false
+    },
+    "kabarett": {
+      "name": "Kabarett",
+      "offsetTitle": 0,
+      "hasTitle": false
+    },
+    "thadeusz": {
+      "name": "Thadeusz",
+      "offsetTitle": 0,
+      "hasTitle": false
+    },
+    "stichtag": {
+      "name": "Stichtag",
+      "offsetTitle": 0,
+      "hasTitle": false
+    },
+    "sonntagsfragen": {
+      "name": "Sonntagsfragen",
+      "offsetTitle": 0,
+      "hasTitle": false
+    }
   }
 }
