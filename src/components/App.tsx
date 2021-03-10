@@ -11,7 +11,7 @@ import Paper from "@material-ui/core/es/Paper";
 import Typography from "@material-ui/core/es/Typography";
 import Grid from "@material-ui/core/es/Grid";
 import Slider from "@material-ui/core/es/Slider";
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import _ from "lodash-es";
 
@@ -30,18 +30,24 @@ const formatPercent = val => `${val}%`;
 
 const App: React.FC = () => {
   // Responsivity
-  const isMobile = useMediaQuery('only screen and (max-width: 768px)');
+  const isMobile = useMediaQuery("only screen and (max-width: 768px)");
 
   const [aspectRatio, aspectRatioChanged] = useFormField("square");
   const [podcast, podcastChanged] = useFormField("thadeusz");
 
   // Filter
   const [brightness, setBrightness] = useState<number>(100);
-  const brightnessChanged = useCallback((ev, value) => setBrightness(value), []);
+  const brightnessChanged = useCallback(
+    (ev, value) => setBrightness(value),
+    []
+  );
   const [contrast, setContrast] = useState<number>(100);
   const contrastChanged = useCallback((ev, value) => setContrast(value), []);
   const [saturation, setSaturation] = useState<number>(100);
-  const saturationChanged = useCallback((ev, value) => setSaturation(value), []);
+  const saturationChanged = useCallback(
+    (ev, value) => setSaturation(value),
+    []
+  );
 
   const [source, setSource] = useState<string | undefined>();
   const [background, setBackground] = useState<string | undefined>();
@@ -60,7 +66,11 @@ const App: React.FC = () => {
 
           <UploadConsumer>
             {props => (
-              <Button variant="contained" color="secondary" onClick={props.open}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={props.open}
+              >
                 Bild auswählen
               </Button>
             )}
@@ -164,10 +174,10 @@ const App: React.FC = () => {
                   />
                 </>
               ) : (
-                  <div className={styles.dragndropcalltoaction}>
-                    <p>Bild hier hin ziehen, um zu beginnen</p>
-                  </div>
-                )}
+                <div className={styles.dragndropcalltoaction}>
+                  <p>Bild hier hin ziehen, um zu beginnen</p>
+                </div>
+              )}
             </Paper>
           </Grid>
           <Grid item xs={isMobile ? 12 : 5}>
@@ -191,7 +201,8 @@ const App: React.FC = () => {
                 Prototyp: Podcast Image Generator
               </Typography>
               <Typography>
-                Ein Produkt der Abteilung Online-Hörfunk (HA ZA Hörfunk), entwickelt vom HackingStudio{" "}
+                Ein Produkt der Abteilung Online-Hörfunk (HA ZA Hörfunk),
+                entwickelt vom HackingStudio{" "}
                 <span role="img" aria-label="Rakete">
                   🚀
                 </span>{" "}
