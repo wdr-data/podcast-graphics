@@ -24,6 +24,11 @@
       "name": "Sonntagsfragen",
       "offsetTitle": 0,
       "hasTitle": false
+    },
+    "steffis_mutmacher": {
+      "name": "Steffis Mutmacher",
+      "offsetTitle": 0,
+      "hasTitle": false
     }
   }
 }
