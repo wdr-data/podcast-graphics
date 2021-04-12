@@ -71,7 +71,13 @@ interface ImageRendererProps {
   filters?: ImageFilter[];
 }
 
-const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, background, podcast, filters }) => {
+const ImageRenderer: React.FC<ImageRendererProps> = ({
+  aspectRatio,
+  mode,
+  background,
+  podcast,
+  filters
+}) => {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   const [renderedDataUrl, setRenderedDataUrl] = useState<string>();
@@ -93,7 +99,9 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({ aspectRatio, mode, backgr
 
       ctx.save();
 
-      ctx.filter = (filters || []).map(filter => `${filter.name}(${filter.value})`).join(" ");
+      ctx.filter = (filters || [])
+        .map(filter => `${filter.name}(${filter.value})`)
+        .join(" ");
 
       await waitForLoad(img);
       drawImage(ctx, img);
