@@ -111,8 +111,10 @@ const ImageRenderer: React.FC<ImageRendererProps> = ({
       await waitForLoad(TITLE_IMAGES[podcast][mode]);
       drawImage(ctx, TITLE_IMAGES[podcast][mode]);
 
-      await waitForLoad(LOGO_IMAGES["wdr2_podcast"][mode]);
-      drawImage(ctx, LOGO_IMAGES["wdr2_podcast"][mode]);
+      if (config.podcasts[podcast].drawLogo) {
+        await waitForLoad(LOGO_IMAGES["wdr2_podcast"][mode]);
+        drawImage(ctx, LOGO_IMAGES["wdr2_podcast"][mode]);
+      }
 
       setRenderedDataUrl(canvas.current.toDataURL("image/jpeg"));
     };

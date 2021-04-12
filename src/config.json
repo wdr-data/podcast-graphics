@@ -3,32 +3,44 @@
     "einfach_fussball": {
       "name": "Einfach Fußball",
       "offsetTitle": 0,
-      "hasTitle": false
+      "hasTitle": false,
+      "drawLogo": true
     },
     "kabarett": {
       "name": "Kabarett",
       "offsetTitle": 0,
-      "hasTitle": false
+      "hasTitle": false,
+      "drawLogo": true
     },
     "thadeusz": {
       "name": "Thadeusz",
       "offsetTitle": 0,
-      "hasTitle": false
+      "hasTitle": false,
+      "drawLogo": true
     },
     "stichtag": {
       "name": "Der Stichtag",
       "offsetTitle": 0,
-      "hasTitle": false
+      "hasTitle": false,
+      "drawLogo": true
     },
     "sonntagsfragen": {
       "name": "Sonntagsfragen",
       "offsetTitle": 0,
-      "hasTitle": false
+      "hasTitle": false,
+      "drawLogo": true
     },
     "steffis_mutmacher": {
       "name": "Steffis Mutmacher",
       "offsetTitle": 0,
-      "hasTitle": false
+      "hasTitle": false,
+      "drawLogo": true
+    },
+    "boettinger_wohnung_17": {
+      "name": "Böttinger Wohnung 17",
+      "offsetTitle": 0,
+      "hasTitle": false,
+      "drawLogo": false
     }
   }
 }
