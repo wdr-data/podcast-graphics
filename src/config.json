@@ -41,6 +41,12 @@
       "offsetTitle": 0,
       "hasTitle": false,
       "drawLogo": false
+    },
+    "das_thema": {
+      "name": "Das Thema",
+      "offsetTitle": 0,
+      "hasTitle": false,
+      "drawLogo": true
     }
   }
 }
